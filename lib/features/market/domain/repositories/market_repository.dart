@@ -1,5 +1,5 @@
 import '../../../../core/entities/dish_entity.dart';
 
-abstract class DishRepository {
+abstract class MarketRepository {
   Future<List<DishEntity>> getAllDishes();
 }
