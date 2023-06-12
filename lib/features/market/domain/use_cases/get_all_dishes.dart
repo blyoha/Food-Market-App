@@ -1,8 +1,8 @@
 import '../../../../core/entities/dish_entity.dart';
-import '../repositories/dish_repository.dart';
+import '../repositories/market_repository.dart';
 
 class GetAllDishes {
-  final DishRepository repository;
+  final MarketRepository repository;
 
   const GetAllDishes(this.repository);
 
