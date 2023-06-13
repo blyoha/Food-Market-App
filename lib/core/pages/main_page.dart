@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../features/cart/presentation/pages/cart_page.dart';
 import '../../features/market/presentation/pages/home_page.dart';
+import '../config/app_icons.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -15,22 +16,26 @@ class _MainPageState extends State<MainPage> {
     NavItem(
       page: HomePage(),
       label: 'Главная',
-      icon: Icons.home_outlined,
+      icon: AppIcons.home_outline,
+      route: 'home',
     ),
     NavItem(
       page: SizedBox.shrink(),
       label: 'Поиск',
-      icon: Icons.search_rounded,
+      icon: AppIcons.search_outline,
+      route: 'search',
     ),
     NavItem(
       page: CartPage(),
       label: 'Корзина',
-      icon: Icons.shopping_cart_outlined,
+      icon: AppIcons.basket,
+      route: 'cart',
     ),
     NavItem(
       page: SizedBox.shrink(),
       label: 'Аккаунт',
-      icon: Icons.person_outline_outlined,
+      icon: AppIcons.user_outline,
+      route: 'profile',
     ),
   ];
 
@@ -74,6 +79,12 @@ class NavItem {
   final Widget page;
   final String label;
   final IconData icon;
+  final String route;
 
-  const NavItem({required this.page, required this.label, required this.icon});
+  const NavItem({
+    required this.page,
+    required this.label,
+    required this.icon,
+    required this.route,
+  });
 }

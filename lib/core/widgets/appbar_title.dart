@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../config/app_icons.dart';
 import 'package:gap/gap.dart';
 
 class AppBarTitle extends StatelessWidget {
@@ -10,7 +11,7 @@ class AppBarTitle extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Icon(
-          Icons.location_on_outlined,
+          AppIcons.location_outline,
           color: Colors.black,
           weight: 2.0,
           size: 28.0,
