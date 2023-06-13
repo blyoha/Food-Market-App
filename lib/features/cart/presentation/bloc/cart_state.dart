@@ -11,8 +11,8 @@ class CartLoading extends CartState {
 class CartLoaded extends CartState {
   final Map<DishEntity, int> cart;
 
-
   CartLoaded({required this.cart});
+
   @override
   List<Object?> get props => [cart.entries];
 
@@ -25,11 +25,9 @@ class CartLoaded extends CartState {
   }
 }
 
-class CartError extends CartState {
-  final String message;
-
-  CartError({required this.message});
+class CartEmpty extends CartState {
+  CartEmpty();
 
   @override
-  List<Object?> get props => [message];
+  List<Object?> get props => [];
 }

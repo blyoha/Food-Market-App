@@ -22,7 +22,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     required this.getCart,
     required this.addDish,
     required this.removeDish,
-  }) : super(CartLoading()) {
+  }) : super(CartEmpty()) {
     on<CartAddDish>(_onAddDish);
     on<CartRemoveDish>(_onRemoveDish);
     on<CartLoad>(_onLoad);
@@ -43,6 +43,10 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   void _onRemoveDish(CartRemoveDish event, Emitter<CartState> emit) {
     emit(CartLoading());
     removeDish(CartParams(dish: event.dish));
-    emit(CartLoaded(cart: getCart(NoParams())));
+    if (getCart(NoParams()).isEmpty) {
+      emit(CartEmpty());
+    } else {
+      emit(CartLoaded(cart: getCart(NoParams())));
+    }
   }
 }
