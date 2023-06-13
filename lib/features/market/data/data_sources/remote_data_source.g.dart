@@ -13,7 +13,7 @@ class _RemoteDataSource implements RemoteDataSource {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://run.mocky.io/';
+    baseUrl ??= 'https://run.mocky.io/v3/';
   }
 
   final Dio _dio;
@@ -21,27 +21,29 @@ class _RemoteDataSource implements RemoteDataSource {
   String? baseUrl;
 
   @override
-  Future<List<DishEntity>> getAllDishes() async {
+  Future<List<DishModel>> getAllDishes() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
-    final _result = await _dio
-        .fetch<List<dynamic>>(_setStreamType<List<DishEntity>>(Options(
+    final _result = await _dio.fetch(_setStreamType<List<DishModel>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              'v3/aba7ecaa-0a70-453b-b62d-0e326c859b3b',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!
-        .map((dynamic i) => DishModel.fromJson(i as Map<String, dynamic>))
-        .toList();
+        .compose(
+          _dio.options,
+          '/aba7ecaa-0a70-453b-b62d-0e326c859b3b',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+
+    List<DishModel> value = [];
+    for (var i in _result.data!['dishes']) {
+      value.add(DishModel.fromJson(i as Map<String, dynamic>));
+    }
+
     return value;
   }
 
