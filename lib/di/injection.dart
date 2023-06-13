@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
-import '../core/use_cases/use_case.dart';
 import '../features/cart/domain/repositories/cart_repository.dart';
 import '../features/cart/domain/use_cases/add_dish.dart';
 import '../features/cart/domain/use_cases/get_cart.dart';
@@ -39,9 +38,9 @@ class Locator {
           removeDish: injection(),
         ));
 
-    injection.registerLazySingleton<UseCase>(() => GetCart(injection()));
-    injection.registerLazySingleton<UseCase>(() => AddDish(injection()));
-    injection.registerLazySingleton<UseCase>(() => RemoveDish(injection()));
+    injection.registerLazySingleton(() => GetCart(injection()));
+    injection.registerLazySingleton(() => AddDish(injection()));
+    injection.registerLazySingleton(() => RemoveDish(injection()));
 
     injection.registerLazySingleton<CartRepository>(() => CartRepository());
   }
