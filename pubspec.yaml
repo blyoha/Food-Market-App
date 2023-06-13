@@ -36,11 +36,3 @@ flutter:
 
   assets:
     - assets/images/
-
-  fonts:
-    - family: SF-Pro-Display
-      fonts:
-        - asset: fonts/SF-Pro-Display-Regular.otf
-          weight: 400
-        - asset: fonts/Schyler-Medium.otf
-          weight: 500

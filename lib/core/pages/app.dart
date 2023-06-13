@@ -27,7 +27,6 @@ class App extends StatelessWidget {
 }
 
 ThemeData appTheme = ThemeData(
-  fontFamily: 'SF-Pro-Display',
   scaffoldBackgroundColor: Colors.white,
   highlightColor: Colors.transparent,
   splashColor: Colors.transparent,
