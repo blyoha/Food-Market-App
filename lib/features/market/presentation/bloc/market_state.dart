@@ -16,3 +16,12 @@ class MarketLoaded extends MarketState {
   @override
   List<Object?> get props => [dishes];
 }
+
+class MarketError extends MarketState {
+  final String message;
+
+  MarketError({required this.message});
+
+  @override
+  List<Object?> get props => [];
+}

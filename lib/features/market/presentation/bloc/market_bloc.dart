@@ -19,6 +19,11 @@ class MarketBloc extends Bloc<MarketEvent, MarketState> {
   _onLoad(MarketLoad event, Emitter<MarketState> emit) async {
     emit(MarketLoading());
     final dishes = await getAllDishes();
-    emit(MarketLoaded(dishes: dishes));
+
+    if (dishes.isEmpty) {
+      emit(MarketError(message: 'Здесь ничего нет'));
+    } else {
+      emit(MarketLoaded(dishes: dishes));
+    }
   }
 }
