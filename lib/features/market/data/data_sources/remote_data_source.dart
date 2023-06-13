@@ -10,5 +10,5 @@ abstract class RemoteDataSource {
   factory RemoteDataSource(Dio dio) = _RemoteDataSource;
 
   @GET('/aba7ecaa-0a70-453b-b62d-0e326c859b3b')
-  Future<List<DishModel>> getAllDishes();
+  Future<List<DishModel>> getDishes({String tag});
 }

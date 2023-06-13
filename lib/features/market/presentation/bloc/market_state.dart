@@ -10,8 +10,9 @@ class MarketLoading extends MarketState {
 
 class MarketLoaded extends MarketState {
   final List<DishEntity> dishes;
+  final List<String> tags;
 
-  MarketLoaded({required this.dishes});
+  MarketLoaded({required this.dishes, required this.tags});
 
   @override
   List<Object?> get props => [dishes];

@@ -5,7 +5,7 @@ import 'package:gap/gap.dart';
 import '../../../../core/widgets/appbar_avatar.dart';
 import '../bloc/market_bloc.dart';
 import '../widgets/dish_card.dart';
-import '../widgets/dish_tag.dart';
+import '../widgets/dish_tag_list.dart';
 
 class CategoryPage extends StatefulWidget {
   final String title;
@@ -17,6 +17,8 @@ class CategoryPage extends StatefulWidget {
 }
 
 class _CategoryPageState extends State<CategoryPage> {
+  bool loaded = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,15 +30,14 @@ class _CategoryPageState extends State<CategoryPage> {
             SizedBox(
               height: 35.0,
               child: BlocBuilder<MarketBloc, MarketState>(
+                buildWhen: (previous, current) => !loaded,
                 builder: (context, state) {
-                  return ListView.separated(
-                    physics: const AlwaysScrollableScrollPhysics(),
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 4,
-                    separatorBuilder: (context, index) => const Gap(8.0),
-                    itemBuilder: (context, index) =>
-                        const DishTag(title: 'тэг'),
-                  );
+                  if (state is MarketLoaded) {
+                    loaded = true;
+                    return DishTagList(tags: state.tags);
+                  }
+
+                  return const SizedBox.shrink();
                 },
               ),
             ),
@@ -50,7 +51,6 @@ class _CategoryPageState extends State<CategoryPage> {
                   }
 
                   if (state is MarketLoaded) {
-                    final dishes = state.dishes;
                     return GridView.builder(
                       scrollDirection: Axis.vertical,
                       gridDelegate:
@@ -60,9 +60,9 @@ class _CategoryPageState extends State<CategoryPage> {
                         crossAxisSpacing: 8.0,
                         crossAxisCount: 3,
                       ),
-                      itemCount: 7,
+                      itemCount: state.dishes.length,
                       itemBuilder: (context, index) =>
-                          DishCard(dish: dishes[index]),
+                          DishCard(dish: state.dishes[index]),
                     );
                   }
 

@@ -9,7 +9,8 @@ import '../features/cart/presentation/bloc/cart_bloc.dart';
 import '../features/market/data/data_sources/remote_data_source.dart';
 import '../features/market/data/repositories/market_repository_impl.dart';
 import '../features/market/domain/repositories/market_repository.dart';
-import '../features/market/domain/use_cases/get_all_dishes.dart';
+import '../features/market/domain/use_cases/get_dishes.dart';
+import '../features/market/domain/use_cases/get_tags.dart';
 import '../features/market/presentation/bloc/market_bloc.dart';
 
 class Locator {
@@ -18,10 +19,10 @@ class Locator {
   void init() {
     // Market
     injection.registerFactory<MarketBloc>(
-        () => MarketBloc(getAllDishes: injection()));
+        () => MarketBloc(getDishes: injection(), getTags: injection()));
 
-    injection
-        .registerLazySingleton<GetAllDishes>(() => GetAllDishes(injection()));
+    injection.registerLazySingleton(() => GetDishes(injection()));
+    injection.registerLazySingleton(() => GetTags(injection()));
 
     injection.registerLazySingleton<MarketRepository>(
         () => MarketRepositoryImpl(remoteDataSource: injection()));

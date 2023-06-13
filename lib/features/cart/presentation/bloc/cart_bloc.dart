@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../core/entities/dish_entity.dart';
-import '../../domain/params/dish_params.dart';
+import '../../domain/params/cart_params.dart';
 import '../../domain/params/no_params.dart';
 import '../../domain/use_cases/add_dish.dart';
 import '../../domain/use_cases/get_cart.dart';

@@ -1,5 +1,5 @@
 import '../../../../core/use_cases/use_case.dart';
-import '../params/dish_params.dart';
+import '../params/cart_params.dart';
 import '../repositories/cart_repository.dart';
 
 class RemoveDish implements UseCase<void, CartParams> {

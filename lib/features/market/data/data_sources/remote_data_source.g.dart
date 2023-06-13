@@ -21,7 +21,7 @@ class _RemoteDataSource implements RemoteDataSource {
   String? baseUrl;
 
   @override
-  Future<List<DishModel>> getAllDishes() async {
+  Future<List<DishModel>> getDishes({String? tag}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -41,7 +41,10 @@ class _RemoteDataSource implements RemoteDataSource {
 
     List<DishModel> value = [];
     for (var i in _result.data!['dishes']) {
-      value.add(DishModel.fromJson(i as Map<String, dynamic>));
+      final dish = DishModel.fromJson(i as Map<String, dynamic>);
+      if (dish.tags.contains(tag ?? dish.tags.first)) {
+        value.add(dish);
+      }
     }
 
     return value;
