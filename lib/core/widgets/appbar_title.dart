@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
-import '../config/app_icons.dart';
 import 'package:gap/gap.dart';
+import 'package:intl/intl.dart';
+
+import '../config/app_icons.dart';
 
 class AppBarTitle extends StatelessWidget {
   const AppBarTitle({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final date = DateFormat('d MMMM, yyyy').format(DateTime.now());
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -26,7 +30,7 @@ class AppBarTitle extends StatelessWidget {
             ),
             const Gap(4.0),
             Text(
-              '12 Августа, 2023',
+              date,
               style: TextStyle(
                 color: Colors.black.withOpacity(.5),
                 fontWeight: FontWeight.w400,
